@@ -38,3 +38,10 @@ EXPOSE 8080
 # Start cron and FastAPI
 CMD service cron start && \
     uvicorn app:app --host 0.0.0.0 --port 8080
+    # Create volume mount points
+RUN mkdir -p /data /cron && chmod 755 /data /cron
+
+# Install cron job for logging 2FA codes
+COPY cron/2fa-cron /etc/cron.d/2fa-cron
+RUN chmod 0644 /etc/cron.d/2fa-cron && crontab /etc/cron.d/2fa-cron
+
