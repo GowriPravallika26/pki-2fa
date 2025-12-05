@@ -1,3 +1,4 @@
+
 version: "3.9"
 
 services:
@@ -10,7 +11,7 @@ services:
     environment:
       - TZ=UTC
     volumes:
-      - ./data:/data
+      - seed-data:/data
       - cron-output:/cron
       - ./student_private.pem:/app/student_private.pem:ro
       - ./student_public.pem:/app/student_public.pem:ro
